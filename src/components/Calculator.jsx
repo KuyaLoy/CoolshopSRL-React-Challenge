@@ -6,6 +6,7 @@ import "./Calculator.scss";
 
 //assets
 import warning from "../assets/warning.png";
+import ButtonsCont from "./ButtonCont";
 
 const Calculator = () => {
   const [rows, setRows] = useState([]);
@@ -67,11 +68,17 @@ const Calculator = () => {
   return (
     <div className="wrapper">
       <div className="RowButtonContainer">
-        <button onClick={handleAddRow}>+ Add row</button>
+        <ButtonsCont
+          onClickAction={handleAddRow}
+          styleClass={""}
+          buttonText={"+ Add row"}
+        />
         {rows.length !== 0 ? (
-          <button onClick={handleReset} className="ResetButton">
-            Clear all
-          </button>
+          <ButtonsCont
+            onClickAction={handleReset}
+            styleClass={"ResetButton"}
+            buttonText={"Clear all"}
+          />
         ) : null}
       </div>
       {rows.length === 0 ? (
@@ -93,8 +100,14 @@ const Calculator = () => {
           ))}
         </ul>
       )}
-      {rows.length !== 0 && !isNaN(calculateResult()) && (
-        <div class="ResultContauiner">
+      {/* {rows.length !== 0 && !isNaN(calculateResult()) && (
+        <div className="ResultContauiner">
+          Result: <span>{calculateResult()}</span>
+        </div>
+      )} */}
+
+      {rows.length !== 0 && (
+        <div className="ResultContauiner">
           Result: <span>{calculateResult()}</span>
         </div>
       )}
@@ -105,12 +118,16 @@ const Calculator = () => {
             <img className="warning" src={warning} alt="" />
             <h3>Are you sure you want to clear all?</h3>
             <div className="modal-buttons">
-              <button className="confirm" onClick={confirmReset}>
-                Yes
-              </button>
-              <button className="reject" onClick={cancelReset}>
-                No
-              </button>
+              <ButtonsCont
+                onClickAction={confirmReset}
+                styleClass={"confirm"}
+                buttonText={"Yes"}
+              />
+              <ButtonsCont
+                onClickAction={cancelReset}
+                styleClass={"reject"}
+                buttonText={"No"}
+              />
             </div>
           </div>
         </div>

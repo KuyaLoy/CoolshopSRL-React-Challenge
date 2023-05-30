@@ -1,28 +1,35 @@
 import React from "react";
 
 import "./Row.scss";
+import ButtonsCont from "./ButtonCont";
 
 const Row = ({ sign, value, disabled, onChange, onDelete, onToggle }) => {
   return (
     <li>
       <div className="sign-buttons">
-        <button
+        {/* <button
           onClick={() => onChange("sign", "+")}
           className={`${sign === "+" ? "active" : ""}`}
           disabled={disabled}
         >
           +
-        </button>
-        <button
-          onClick={() => onChange("sign", "-")}
-          className={`${sign === "-" ? "active" : ""}`}
-          disabled={disabled}
-        >
-          -
-        </button>
+        </button> */}
+
+        <ButtonsCont
+          onClickAction={() => onChange("sign", "+")}
+          styleClass={`${sign === "+" ? "active" : ""}`}
+          buttonText={"+"}
+          disableCont={disabled}
+        />
+        <ButtonsCont
+          onClickAction={() => onChange("sign", "-")}
+          styleClass={`${sign === "-" ? "active" : ""}`}
+          buttonText={"-"}
+          disableCont={disabled}
+        />
       </div>
       <input
-        type="text"
+        type="number"
         value={value}
         onChange={(e) => onChange("value", e.target.value)}
         disabled={disabled}
